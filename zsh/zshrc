@@ -107,14 +107,20 @@ source ${ZIM_HOME}/init.zsh
 
 # ---- PATH / pyenv ----
 export PYENV_ROOT="$HOME/.pyenv"
-
 # zsh: unique-ify PATH
 typeset -U path PATH
-path=(
-  "$HOME/Library/Python/3.9/bin"
-  "$PYENV_ROOT/bin"
-  $path
-)
+
+if [[ "$OSTYPE" == "darwin"8 ]]; then
+    path=(
+        "$HOME/Library/Python/3.9/bin"
+        "$PYENV_ROOT/bin"
+        $path
+    )
+else
+    path=(
+        "$PYENV_ROOT/bin"
+        $path
+    )
 export PATH
 
 # pyenv init (if installed)
@@ -123,10 +129,6 @@ command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init - zsh)"
 # ---- python-build mirror (optional) ----
 export PYTHON_BUILD_MIRROR_URL="https://mirrors.tuna.tsinghua.edu.cn/python/"
 export PYTHON_BUILD_MIRROR_URL_SKIP_CHECKSUM=1
-
-# ---- md - copy last command to clipboard ----
-MD_CMD_NAME="md"
-[[ -r "$HOME/.md/md.sh" ]] && source "$HOME/.md/md.sh"
 
 # fzf
 [[ -r "$HOME/.config/zsh/vendor/fzf.zsh" ]] && source "$HOME/.config/zsh/vendor/fzf.zsh"
