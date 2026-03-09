@@ -17,5 +17,6 @@ link() {
 link "$DOTFILES/zsh/zshrc" "$HOME/.zshrc"
 link "$DOTFILES/zsh/zimrc" "$HOME/.zimrc"
 link "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
+link "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
 
 echo "Done!"
