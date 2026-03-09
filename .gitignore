@@ -1,0 +1,13 @@
+# 不需要同步的工具
+filezilla/
+iterm2/
+
+# zim 插件目录
+zsh/vendor/
+
+# nvim 缓存
+nvim/.DS_Store
+
+# macOS
+.DS_Store
+**/.DS_Store
