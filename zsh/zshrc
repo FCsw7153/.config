@@ -121,6 +121,7 @@ else
         "$PYENV_ROOT/bin"
         $path
     )
+fi
 export PATH
 
 # pyenv init (if installed)
