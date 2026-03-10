@@ -28,7 +28,7 @@ zmodule prompt
 # Exposes git repository status information to prompts.
 zmodule git-info
 # themes
-zmodule steeef
+zmodule bira
 
 #
 # Completion
