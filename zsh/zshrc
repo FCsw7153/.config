@@ -110,7 +110,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 # zsh: unique-ify PATH
 typeset -U path PATH
 
-if [[ "$OSTYPE" == "darwin"8 ]]; then
+if [[ "$OSTYPE" == "darwin" ]]; then
     path=(
         "$HOME/Library/Python/3.9/bin"
         "$PYENV_ROOT/bin"
@@ -133,3 +133,6 @@ export PYTHON_BUILD_MIRROR_URL_SKIP_CHECKSUM=1
 
 # fzf
 [[ -r "$HOME/.config/zsh/vendor/fzf.zsh" ]] && source "$HOME/.config/zsh/vendor/fzf.zsh"
+
+# 加载本机专属配置（不进 Git）
+[[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
