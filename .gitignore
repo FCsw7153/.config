@@ -1,13 +1,27 @@
-# 不需要同步的工具
-filezilla/
-iterm2/
+# ignore everything
+*
 
-# zim 插件目录
-zsh/vendor/
+# keep these
+!*/
 
-# nvim 缓存
-nvim/.DS_Store
+# files
+!.gitignore
+!install.sh
 
-# macOS
-.DS_Store
-**/.DS_Store
+# folders
+
+## nvim
+!nvim/
+!nvim/**
+
+## zsh
+!zsh/
+!zsh/**
+
+## git
+!git/
+!git/**
+
+## tmux
+!tmux/
+!tmux/**
