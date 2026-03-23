@@ -1,2 +1,4 @@
 -- 空插件列表：现在不装任何插件，以后再逐步添加
-return {}
+return {
+    require("plugins.autopairs"),
+}
