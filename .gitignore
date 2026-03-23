@@ -13,6 +13,7 @@
 ## nvim
 !nvim/
 !nvim/**
+nvim/lazy-lock.json
 
 ## zsh
 !zsh/
