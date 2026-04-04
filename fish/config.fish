@@ -18,6 +18,11 @@ if command -q pyenv
     pyenv init - | source
 end
 
+# ---- conda ----
+if test -x /home/user/anaconda3/bin/conda
+    eval (/home/user/anaconda3/bin/conda shell.fish hook)
+end
+
 # ---- python mirror ----
 set -gx PYTHON_BUILD_MIRROR_URL "https://mirrors.tuna.tsinghua.edu.cn/python/"
 set -gx PYTHON_BUILD_MIRROR_URL_SKIP_CHECKSUM 1
