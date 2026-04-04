@@ -19,6 +19,10 @@ nvim/lazy-lock.json
 !zsh/
 !zsh/**
 
+## fish
+!fish/
+!fish/**
+
 ## git
 !git/
 !git/**
