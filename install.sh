@@ -4,6 +4,7 @@ set -euo pipefail
 DOTFILES="${DOTFILES:-$HOME/.config}"
 LOCAL_BIN="$HOME/.local/bin"
 LOCAL_OPT="$HOME/.local/opt"
+FISH_BIN="$LOCAL_OPT/fish"
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "$TMP_DIR"' EXIT
 
@@ -78,9 +79,37 @@ install_latest_fish_linux() {
 
     curl -fL "$url" -o "$TMP_DIR/fish.tar.xz"
     tar -xJf "$TMP_DIR/fish.tar.xz" -C "$TMP_DIR"
-    install -m 0755 "$TMP_DIR/fish" "$LOCAL_OPT/fish"
+    install -m 0755 "$TMP_DIR/fish" "$FISH_BIN"
 
-    echo "fish installed: $("$LOCAL_OPT/fish" --version)"
+    echo "fish installed: $("$FISH_BIN" --version)"
+}
+
+set_default_shell_to_fish() {
+    if ! command -v chsh >/dev/null 2>&1; then
+        echo "Skip: chsh not found, cannot set default shell automatically."
+        return 0
+    fi
+
+    if [ ! -x "$FISH_BIN" ]; then
+        echo "Skip: fish binary not found: $FISH_BIN"
+        return 0
+    fi
+
+    if [ "${SHELL:-}" = "$FISH_BIN" ]; then
+        echo "Default shell already set to $FISH_BIN"
+        return 0
+    fi
+
+    if [ -r /etc/shells ] && grep -Fxq "$FISH_BIN" /etc/shells; then
+        if chsh -s "$FISH_BIN" "$USER"; then
+            echo "Default shell changed to: $FISH_BIN"
+        else
+            echo "Warning: failed to change default shell via chsh."
+        fi
+    else
+        echo "Skip: $FISH_BIN is not listed in /etc/shells, so chsh will likely refuse it."
+        echo "You can still start fish manually with: $FISH_BIN -l"
+    fi
 }
 
 main() {
@@ -94,11 +123,15 @@ main() {
     install_latest_fzf_linux
     install_latest_fish_linux
 
-    ensure_line 'fish_add_path -p ~/.local/opt' "$HOME/.config/fish/config.fish"
     ensure_line 'fish_add_path -p ~/.local/bin' "$HOME/.config/fish/config.fish"
+    ensure_line 'fish_add_path -p ~/.local/opt' "$HOME/.config/fish/config.fish"
+
+    export PATH="$LOCAL_BIN:$LOCAL_OPT:$PATH"
+
+    set_default_shell_to_fish
 
     echo "Switching to new fish..."
-    exec "$LOCAL_OPT/fish" -l
+    exec "$FISH_BIN" -l
 }
 
 main "$@"
