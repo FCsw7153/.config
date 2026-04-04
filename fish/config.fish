@@ -33,4 +33,3 @@ set -gx FZF_DEFAULT_COMMAND 'find . -type f -not -path "*/.git/*" | sed "s#^\./#
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border --preview 'sed -n \"1,500p\" {}' --preview-window 'right,60%,border-left'"
 set -gx FZF_CTRL_R_OPTS "--preview-window hidden"
-
