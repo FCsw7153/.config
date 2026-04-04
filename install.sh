@@ -96,7 +96,14 @@ set_default_shell_to_fish() {
     # 如果 /etc/shells 里没有，就加进去（需要 root）
     if ! grep -Fxq "$FISH_BIN" /etc/shells; then
         echo "Adding $FISH_BIN to /etc/shells..."
-        echo "$FISH_BIN" | sudo tee -a /etc/shells
+        if ! grep -Fxq "$FISH_BIN" /etc/shells; then
+            echo "Adding $FISH_BIN to /etc/shells..."
+            if [ "$(id -u)" -eq 0 ]; then
+                echo "$FISH_BIN" >> /etc/shells
+            else
+                echo "$FISH_BIN" | sudo tee -a /etc/shells
+            fi
+        fi
     fi
     if chsh -s "$FISH_BIN"; then
         echo "Default shell changed to: $FISH_BIN"
