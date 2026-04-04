@@ -85,30 +85,24 @@ install_latest_fish_linux() {
 }
 
 set_default_shell_to_fish() {
-    if ! command -v chsh >/dev/null 2>&1; then
-        echo "Skip: chsh not found, cannot set default shell automatically."
-        return 0
-    fi
-
     if [ ! -x "$FISH_BIN" ]; then
         echo "Skip: fish binary not found: $FISH_BIN"
         return 0
     fi
-
     if [ "${SHELL:-}" = "$FISH_BIN" ]; then
         echo "Default shell already set to $FISH_BIN"
         return 0
     fi
-
-    if [ -r /etc/shells ] && grep -Fxq "$FISH_BIN" /etc/shells; then
-        if chsh -s "$FISH_BIN" "$USER"; then
-            echo "Default shell changed to: $FISH_BIN"
-        else
-            echo "Warning: failed to change default shell via chsh."
-        fi
+    # 如果 /etc/shells 里没有，就加进去（需要 root）
+    if ! grep -Fxq "$FISH_BIN" /etc/shells; then
+        echo "Adding $FISH_BIN to /etc/shells..."
+        echo "$FISH_BIN" | sudo tee -a /etc/shells
+    fi
+    if chsh -s "$FISH_BIN"; then
+        echo "Default shell changed to: $FISH_BIN"
     else
-        echo "Skip: $FISH_BIN is not listed in /etc/shells, so chsh will likely refuse it."
-        echo "You can still start fish manually with: $FISH_BIN -l"
+        echo "Warning: chsh failed. Try running manually:"
+        echo "  echo '$FISH_BIN' | sudo tee -a /etc/shells && chsh -s '$FISH_BIN'"
     fi
 }
 
