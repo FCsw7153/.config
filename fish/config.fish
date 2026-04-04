@@ -20,7 +20,7 @@ end
 
 # ---- conda ----
 if test -x /home/user/anaconda3/bin/conda
-    eval (/home/user/anaconda3/bin/conda shell.fish hook)
+    /home/user/anaconda3/bin/conda shell.fish hook | source
 end
 
 # ---- python mirror ----
