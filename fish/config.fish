@@ -19,8 +19,8 @@ if command -q pyenv
 end
 
 # ---- conda ----
-if test -x "$HOME/anaconda3/bin/conda"
-    eval ("$HOME/anaconda3/bin/conda" shell.fish hook)
+if test -x /home/user/anaconda3/bin/conda
+    eval (/home/user/anaconda3/bin/conda shell.fish hook)
 end
 
 # ---- python mirror ----
