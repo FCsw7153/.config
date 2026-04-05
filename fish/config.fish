@@ -5,19 +5,6 @@ end
 # ---- alias ----
 alias lg='lazygit'
 
-# ---- PATH / pyenv ---- 
-set -gx PYENV_ROOT "$HOME/.pyenv"
-if test (uname) = Darwin
-    fish_add_path "$HOME/Library/Python/3.9/bin"
-    fish_add_path "$PYENV_ROOT/bin"
-else
-    fish_add_path "$PYENV_ROOT/bin"
-end
-
-if command -q pyenv
-    pyenv init - | source
-end
-
 # ---- python mirror ----
 set -gx PYTHON_BUILD_MIRROR_URL "https://mirrors.tuna.tsinghua.edu.cn/python/"
 set -gx PYTHON_BUILD_MIRROR_URL_SKIP_CHECKSUM 1
