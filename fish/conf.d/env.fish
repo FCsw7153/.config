@@ -6,13 +6,8 @@ if not set -q CONDA_SHLVL
     if test -x /opt/homebrew/Caskroom/miniconda/base/bin/conda
         set conda_bin /opt/homebrew/Caskroom/miniconda/base/bin/conda
     else if test -x /opt/anaconda3/bin/conda
+        # ... 中间那些 else if 保持你的原样不变 ...
         set conda_bin /opt/anaconda3/bin/conda
-    else if test -x /home/user/anaconda3/bin/conda
-        set conda_bin /home/user/anaconda3/bin/conda
-    else if test -x /home/user/miniconda3/bin/conda
-        set conda_bin /home/user/miniconda3/bin/conda
-    else if test -x /root/miniconda3/bin/conda
-        set conda_bin /root/miniconda3/bin/conda
     else if test -x /root/anaconda3/bin/conda
         set conda_bin /root/anaconda3/bin/conda
     end
