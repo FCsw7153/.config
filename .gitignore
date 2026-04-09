@@ -23,6 +23,7 @@ nvim/lazy-lock.json
 !fish/
 !fish/**
 fish/config.local.fish
+fish/fish_variables
 
 ## git
 !git/
