@@ -20,13 +20,6 @@ if vim.fn.has("macunix") == 1 then
 else
   local osc52 = require("vim.ui.clipboard.osc52")
 
-  local function paste(reg)
-    return {
-      vim.fn.getreg(reg, 1, true),   -- 返回 list of lines
-      vim.fn.getregtype(reg),
-    }
-  end
-
   vim.g.clipboard = {
     name = "OSC 52",
     copy = {
@@ -35,10 +28,10 @@ else
     },
     paste = {
       ["+"] = function()
-        return paste("+")
+        return { vim.fn.getreg("+"), vim.fn.getregtype("+") }
       end,
       ["*"] = function()
-        return paste("*")
+        return { vim.fn.getreg("*"), vim.fn.getregtype("*") }
       end,
     },
     cache_enabled = 0,
