@@ -27,12 +27,8 @@ else
       ["*"] = osc52.copy("*"),
     },
     paste = {
-      ["+"] = function()
-        return { vim.fn.getreg("+"), vim.fn.getregtype("+") }
-      end,
-      ["*"] = function()
-        return { vim.fn.getreg("*"), vim.fn.getregtype("*") }
-      end,
+      ["+"] = osc52.paste("+"),
+      ["*"] = osc52.paste("*"),
     },
     cache_enabled = 0,
   }
