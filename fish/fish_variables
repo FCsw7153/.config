@@ -1,4 +1,0 @@
-# This file contains fish universal variable definitions.
-# VERSION: 3.0
-SETUVAR __fish_initialized:4300
-SETUVAR fish_user_paths:/home/ml/\x2elocal/opt\x1e/home/ml/\x2elocal\x1e/home/ml/\x2elocal/bin\x1e/Users/liangmao/Library/Python/3\x2e9/bin
