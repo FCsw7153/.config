@@ -1,10 +1,14 @@
 require("core.basic")
 require("core.keymap")
-require("core.lazy")
+require("plugins")
+
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
 
 vim.opt.clipboard = "unnamedplus"
 
-if vim.fn.has("macunix") == 1 then
+if vim.fn.has("mac") == 1 then
   vim.g.clipboard = {
     name = "macOS",
     copy = {
