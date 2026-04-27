@@ -1,24 +1,19 @@
 # ===== conda =====
-# 只初始化一次，并且只命中一个 conda
-if not set -q CONDA_SHLVL
-    set -l conda_bin
-
-    if test -x /opt/homebrew/Caskroom/miniconda/base/bin/conda
-        set conda_bin /opt/homebrew/Caskroom/miniconda/base/bin/conda
-    else if test -x /opt/anaconda3/bin/conda
-        set conda_bin /opt/anaconda3/bin/conda
-    else if test -x /home/user/anaconda3/bin/conda
-        set conda_bin /home/user/anaconda3/bin/conda
-    else if test -x /home/user/miniconda3/bin/conda
-        set conda_bin /home/user/miniconda3/bin/conda
-    else if test -x /root/miniconda3/bin/conda
-        set conda_bin /root/miniconda3/bin/conda
-    else if test -x /root/anaconda3/bin/conda
-        set conda_bin /root/anaconda3/bin/conda
-    end
-
-    if test -n "$conda_bin"
-        $conda_bin shell.fish hook | source
+if status is-interactive
+    if not functions -q conda
+        if set -q CONDA_EXE; and test -x "$CONDA_EXE"
+            "$CONDA_EXE" shell.fish hook | source
+        else if test -x "$HOME/anaconda3/bin/conda"
+            "$HOME/anaconda3/bin/conda" shell.fish hook | source
+        else if test -x "$HOME/miniconda3/bin/conda"
+            "$HOME/miniconda3/bin/conda" shell.fish hook | source
+        else if test -x /root/anaconda3/bin/conda
+            /root/anaconda3/bin/conda shell.fish hook | source
+        else if test -x /root/miniconda3/bin/conda
+            /root/miniconda3/bin/conda shell.fish hook | source
+        else if command -sq conda
+            conda shell.fish hook | source
+        end
     end
 end
 
