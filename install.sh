@@ -92,7 +92,7 @@ init_brew_env_for_current_script() {
 
 install_packages_with_brew() {
     brew update
-    brew install fish fzf neovim lsd
+    brew install fish fzf neovim lsd lazygit
 
     BREW_PREFIX="$(brew --prefix)"
     FISH_BIN="$BREW_PREFIX/bin/fish"
