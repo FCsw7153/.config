@@ -1,0 +1,14 @@
+# Font
+font_family JetBrainsMono Nerd Font Mono
+font_size 12.0
+
+# Chinese fallback font
+symbol_map U+2E80-U+2EFF,U+3000-U+303F,U+3400-U+4DBF,U+4E00-U+9FFF,U+F900-U+FAFF,U+FE10-U+FE1F,U+FE30-U+FE4F,U+FF00-U+FFEF PingFang SC
+
+# Theme: Catppuccin Mocha
+include current-theme.conf
+
+# macOS titlebar
+macos_titlebar_color background
+macos_show_window_title_in menubar
+
